@@ -3,11 +3,11 @@
 {% extends "base_sistema.html" %}
 {% block subtitulo %} Usuarios {% endblock%}
 {% block conteudo %}
-<section class="content">
+<section class="content" style="background-color: #E5D8BD;">
   <div class="row">
     <div class="col-xs-12">
-      <div class="box-header">
-        <h3 class="box-title">Cadastro de usuarios</h3>
+      <div class="box-header" style="font-size: 20;">
+        <h3 class="box-title">Cadastro de hotéis</h3>
       </div><!-- /.box-header -->
       <div class="box">
         <div class="car">
@@ -21,14 +21,14 @@
              {% endif %}
           {% endwith %}
         </div>      
-          <div class="box-body">
+          <div class="box-body" style="background-color: #282119; color: white;">
             <table id="example" class="display" style="width:100%">
               <thead>
                   <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Email</th>
                     <th scope="col">Nome</th>
-                    <th scope="col">Data</th>
+                    <th scope="col">Local</th>
+                    <th scope="col">Preço</th>
                     <th scope="col">Alterar</th>                     
                     <th scope="col">Excluir</th>
                   </tr>
@@ -36,17 +36,17 @@
               <tbody>
                   <tr>
                     <td><a href="{{url_for('usuario')}}">1</a></td>
-                    <td>caraca@caraca.com</td>
-                    <td>Caraca Carvalho</td>
-                    <td>14-04-2034</td>
+                    <td>Chalé Vista Dourada</td>
+                    <td>R. Aipim Dourado, 300 - Jd.França</td>
+                    <td>R$500,00 p/ noite</td>
                     <td><a href="{{url_for('atualiza_user')}}"><span class="label label-success"><i class="fa-solid fa-pencil"></i> Alterar</span></a></td>
-                    <td><a href="{{url_for('usuario')}}"><span class="label label-danger"><i class="fa-solid fa-eraser"></i> Excluir</span></a></td>
+                    <td><a href="{{url_for('exclui_user')}}"><span class="label label-danger"><i class="fa-solid fa-eraser"></i> Excluir</span></a></td>
                   </tr>
                
                            
               </tbody>
           </table>
-          <a href="{{url_for('cad_user')}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Inserir usuarios</a>
+          <a href="{{url_for('cad_user')}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Inserir hotéis</a>
        </div>      
     </div>        
   </div>

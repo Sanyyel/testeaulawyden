@@ -46,23 +46,23 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="{{url_for('inicio')}}" class="logo">
+        <a href="{{url_for('inicio')}}" class="logo" style="background-color: #C97338;">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>R</b>H</span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>RH</b>online</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top" role="navigation">
+        <nav class="navbar navbar-static-top" role="navigation" style="background-color: #C97338;">
           <!-- Sidebar toggle button-->
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
           </a>
-          <div class="navbar-custom-menu">
+          <div class="navbar-custom-menu" style="background-color: #C97338;">
             <ul class="nav navbar-nav">         
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">                  
-                  <span class="hidden-xs">Usuario do sistema</span>
+                  <span class="hidden-xs">Usuário do sistema</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -73,6 +73,8 @@
                   </li>
                   <!-- Menu Body -->
                   
+
+                  </body>
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
@@ -89,7 +91,7 @@
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
+      <aside class="main-sidebar" style="background-color: #65371F;">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">         
           <ul class="sidebar-menu">
@@ -97,7 +99,7 @@
             
             <li>
               <a href="{{url_for('inicio')}}">
-                <i class="fa-solid fa-user"></i> <span> Usuarios</span>
+                <i class="fa-solid fa-user"></i> <span> Hotéis</span>
               </a>
             </li> 
             
@@ -108,17 +110,17 @@
       </aside>
 
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+      <div class="content-wrapper" style="background-color: #e5d8bd;">
         <!-- Content Header (Page header) -->
         {% block conteudo %}
         {% endblock %}
        
       </div><!-- /.content-wrapper -->
-      <footer class="main-footer">
+      <footer class="main-footer" style="background-color: #e5d8bd;">
         <div class="pull-right hidden-xs">
           <b>Versão</b> 1.0
         </div>
-        <strong>Copyright &copy; 2023 <a href="#">seujob.net</a>.</strong>
+        <strong>Copyright &copy; 2023 <a href="#">PROJECT UMBRELLA</a>.</strong>
       </footer>
 
       

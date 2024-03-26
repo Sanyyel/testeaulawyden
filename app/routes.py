@@ -29,5 +29,9 @@ def init_app(app):
     def atualiza_user():        
         return render_template("atualiza_user.html")
     
+    @app.route("/exclui_user")
+    def exclui_user():        
+        return render_template("exclui_user.html")
+    
     
     
