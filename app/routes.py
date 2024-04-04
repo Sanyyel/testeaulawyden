@@ -1,4 +1,4 @@
-from app.models import usuario
+from app.models import hotel
 from app import db
 from app.forms import LoginForm
 from datetime import timedelta
@@ -15,11 +15,12 @@ def init_app(app):
     
     @app.route("/")
     def inicio():        
-        return render_template("inicio.html")
+        return render_template("inicio.html", hotels=db.session.execute(db.select(hotel).order_by(hotel.id)).scalars())
+    
     
     @app.route("/usuario")
     def usuario():        
-        return render_template("usuario.html")
+        return render_template("usuario.html")   
     
     @app.route("/cad_user")
     def cad_user():        
@@ -29,9 +30,12 @@ def init_app(app):
     def atualiza_user():        
         return render_template("atualiza_user.html")
     
-    @app.route("/exclui_user")
-    def exclui_user():        
-        return render_template("exclui_user.html")
+    @app.route("/exclui_user/<int:id>")
+    def exclui_user(id):  
+        delete=hotel.query.filter_by(id=id).first()  
+        db.session.delete(delete)
+        db.session.commit()    
+        return redirect(url_for("inicio"))
     
     
     
