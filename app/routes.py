@@ -36,9 +36,21 @@ def init_app(app):
             return redirect(url_for("cad_user"))
         return render_template("cad_user.html")     
     
-    @app.route("/atualiza_user")
-    def atualiza_user():        
-        return render_template("atualiza_user.html")
+    @app.route("/atualiza_user/<int:id>", methods=["GET", "POST"])
+    def atualiza_user(id): 
+        _hotel = hotel.query.filter_by(id=id).first()
+        if request.method == "POST":
+            nome_hotel = request.form["nome"] 
+            local_hotel = request.form["local"] 
+            preco_hotel = request.form["preco"]  
+            
+            flash("Hotel atualizado com sucesso.") 
+            
+            _hotel.query.filter_by(id=id).update({"nome": nome_hotel, "local": local_hotel, "preco": preco_hotel})
+            db.session.commit()
+            return redirect(url_for("inicio"))
+            
+        return render_template("atualiza_user.html", _hotel=_hotel)
     
     @app.route("/exclui_user/<int:id>")
     def exclui_user(id):  

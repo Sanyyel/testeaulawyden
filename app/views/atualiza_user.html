@@ -13,10 +13,9 @@
         <!-- form start -->
         <form
           class="row g-3"
-          action=""
+          action="{{url_for('atualiza_user', id=_hotel.id)}}"
           method="POST"
           name="dados_user"
-          onSubmit="return enviardados_user();"
         >
           <div class="box-body" style="color: white;">
             <div class="col-md-4">
@@ -26,7 +25,7 @@
                 type="text"
                 name="nome"
                 id="nome"
-                value="Chalé Vista Dourada"
+                value="{{_hotel.nome}}"
               />
             </div>
             <div class="col-md-4">
@@ -35,7 +34,7 @@
                 class="form-control"
                 type="text"
                 name="local"
-                value="R. Aipim Dourado, 300 - Jd.França"
+                value="{{_hotel.local}}"
               />
             </div>
             <div class="col-md-4">
@@ -44,7 +43,7 @@
                 class="form-control"
                 type="text"
                 name="preco"
-                value="R$500,00"
+                value="{{_hotel.preco}}"
               />
             </div>
             <div class="col-md-12">
