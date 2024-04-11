@@ -2,7 +2,7 @@ from app.models import hotel
 from app import db
 from app.forms import LoginForm
 from datetime import timedelta
-from flask import render_template, request, redirect, url_for, flash, jsonify
+from flask import render_template, request, redirect, url_for, flash, jsonify 
 from flask_login import login_required, login_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
@@ -22,9 +22,19 @@ def init_app(app):
     def usuario():        
         return render_template("usuario.html")   
     
-    @app.route("/cad_user")
-    def cad_user():        
-        return render_template("cad_user.html")
+    @app.route("/cad_user", methods=["GET", "POST"])
+    def cad_user(): 
+        if request.method == "POST":     
+            _hotel = hotel()
+            _hotel.nome = request.form["nome"]
+            _hotel.local = request.form["local"]
+            _hotel.preco = request.form["preco"]
+            db.session.add(_hotel)
+            db.session.commit()
+            
+            flash("Hotel criado com sucesso.")
+            return redirect(url_for("cad_user"))
+        return render_template("cad_user.html")     
     
     @app.route("/atualiza_user")
     def atualiza_user():        
