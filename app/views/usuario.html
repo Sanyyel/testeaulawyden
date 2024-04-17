@@ -1,0 +1,57 @@
+
+  
+{% extends "base_sistema.html" %}
+{% block subtitulo %} Usuarios {% endblock%}
+{% block conteudo %}
+<section class="content" style="background-color: #E5D8BD;">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box-header" style="font-size: 20;">
+        <h3 class="box-title">Cadastro de usuários</h3>
+      </div><!-- /.box-header -->
+      <div class="box">
+        <div class="car">
+          {% with messages = get_flashed_messages()%}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success">
+                  {{message}}                                          
+                </div>                                 
+                {% endfor %}
+             {% endif %}
+          {% endwith %}
+        </div>      
+          <div class="box-body" style="background-color: #282119; color: white;">
+            <table id="example" class="display" style="width:100%">
+              <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Alterar</th>                     
+                    <th scope="col">Excluir</th>
+                  </tr>
+              </thead>
+              <tbody>
+              {% for user in users %}
+                  <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.nome}}</td>
+                    <td>{{user.data}}</td>
+                    <td><a href="{{url_for('atualiza_usuario', id=user.id)}}"><span class="label label-success"><i class="fa-solid fa-pencil"></i> Alterar</span></a></td>
+                    <td><a href="{{url_for('exclui_usuario', id=user.id)}}"><span class="label label-danger"><i class="fa-solid fa-eraser"></i> Excluir</span></a></td>
+                  </tr>
+              {% endfor %}
+               
+                           
+              </tbody>
+          </table>
+          <a href="{{url_for('cad_usuario')}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Inserir usuários</a>
+       </div>      
+    </div>        
+  </div>
+</section>
+{% endblock %}
+     

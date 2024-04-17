@@ -3,9 +3,9 @@ from flask_login import UserMixin
 
 @login_manager.user_loader
 def current_user(user_id):
-    return usuario.query.get(user_id)
+    return user.query.get(user_id)
 
-class usuario(db.Model, UserMixin):
+class user(db.Model, UserMixin):
     __tablename__ = "usuarios"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), nullable=False, unique=True)

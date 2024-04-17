@@ -1,4 +1,4 @@
-from app.models import hotel
+from app.models import hotel, user
 from app import db
 from app.forms import LoginForm
 from datetime import timedelta
@@ -20,7 +20,7 @@ def init_app(app):
     
     @app.route("/usuario")
     def usuario():        
-        return render_template("usuario.html")   
+        return render_template("usuario.html", users=db.session.execute(db.select(user).order_by(user.id)).scalars())
     
     @app.route("/cad_user", methods=["GET", "POST"])
     def cad_user(): 
@@ -34,7 +34,21 @@ def init_app(app):
             
             flash("Hotel criado com sucesso.")
             return redirect(url_for("cad_user"))
-        return render_template("cad_user.html")     
+        return render_template("cad_user.html")
+
+    @app.route("/cad_usuario", methods=["GET", "POST"])
+    def cad_usuario(): 
+        if request.method == "POST":     
+            _user = user()
+            _user.email = request.form["email"]
+            _user.nome = request.form["nome"]
+            _user.data = request.form["data"]
+            db.session.add(_user)
+            db.session.commit()
+            
+            flash("Usuário criado com sucesso.")
+            return redirect(url_for("cad_usuario"))
+        return render_template("cad_usuario.html")     
     
     @app.route("/atualiza_user/<int:id>", methods=["GET", "POST"])
     def atualiza_user(id): 
@@ -52,12 +66,35 @@ def init_app(app):
             
         return render_template("atualiza_user.html", _hotel=_hotel)
     
+    @app.route("/atualiza_usuario/<int:id>", methods=["GET", "POST"])
+    def atualiza_usuario(id): 
+        _user = user.query.filter_by(id=id).first()
+        if request.method == "POST":
+            email_user = request.form["email"] 
+            nome_user = request.form["nome"] 
+            data_user = request.form["data"]  
+            
+            flash("Usuário atualizado com sucesso.") 
+            
+            _user.query.filter_by(id=id).update({"email": email_user, "nome": nome_user, "data": data_user})
+            db.session.commit()
+            return redirect(url_for("usuario"))
+            
+        return render_template("atualiza_usuario.html", _user=_user)
+    
     @app.route("/exclui_user/<int:id>")
     def exclui_user(id):  
         delete=hotel.query.filter_by(id=id).first()  
         db.session.delete(delete)
         db.session.commit()    
         return redirect(url_for("inicio"))
+    
+    @app.route("/exclui_usuario/<int:id>")
+    def exclui_usuario(id):  
+        delete=user.query.filter_by(id=id).first()  
+        db.session.delete(delete)
+        db.session.commit()    
+        return redirect(url_for("usuario"))
     
     
     

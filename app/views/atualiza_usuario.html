@@ -1,5 +1,5 @@
-{% extends "base_sistema.html" %} {% block subtitulo %} Usuario {% endblock%} {%
-block conteudo %}
+{% extends "base_sistema.html" %} {% block subtitulo %} Usuarios {% endblock%}
+{% block conteudo %}
 <section class="content">
   <div class="row">
     <!-- left column -->
@@ -7,15 +7,26 @@ block conteudo %}
       <!-- general form elements -->
       <div class="box box-primary" style="background-color: #282119">
         <div class="box-header">
-          <h3 class="box-title" style="color: white">Excluir hotel</h3>
+          <h3 class="box-title" style="color: white;">Atualização de usuários</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form class="row g-3">
-          <div class="box-body" style="color: white">
+        <form
+          class="row g-3"
+          action="{{url_for('atualiza_usuario', id=_user.id)}}"
+          method="POST"
+          name="dados_user"
+        >
+          <div class="box-body" style="color: white;">
             <div class="col-md-4">
-              <label class="form-label">Id</label>
-              <input class="form-control" type="text" value="1" disabled />
+              <label class="form-label">Email</label>
+              <input
+                class="form-control"
+                type="text"
+                name="email"
+                id="nome"
+                value="{{_user.email}}"
+              />
             </div>
             <div class="col-md-4">
               <label class="form-label">Nome</label>
@@ -23,35 +34,23 @@ block conteudo %}
                 class="form-control"
                 type="text"
                 name="nome"
-                value="Chalé Vista Dourada"
-                disabled
+                value="{{_user.nome}}"
               />
             </div>
             <div class="col-md-4">
-              <label class="form-label">Local</label>
+              <label class="form-label">Data</label>
               <input
                 class="form-control"
                 type="text"
-                name="text"
-                value="R. Aipim Dourado, 300 - Jd.França"
-                disabled
+                name="data"
+                value="{{_user.data}}"
               />
-            </div>
-            <div class="col-md-12">
-              <label class="form-label">Preço</label>
-              <input class="form-control" type="text" value="R$500,00" disabled />
             </div>
             <div class="col-md-12">
               <br />
             </div>
             <div class="col-md-12">
-              <a
-                href=""
-                class="btn btn-primary btn-lg active"
-                role="button"
-                aria-pressed="true"
-                >Excluir</a
-              >
+              <button class="btn btn-primary" type="submit">Alterar</button>
             </div>
           </div>
         </form>
