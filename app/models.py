@@ -18,7 +18,19 @@ class hotel(db.Model):
     nome = db.Column(db.String(255), nullable=True)
     local = db.Column(db.String(255), nullable=True)
     preco = db.Column(db.Integer, nullable = True)
-    data = db.Column(db.DateTime,  default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())    
+    data = db.Column(db.DateTime,  default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+
+class domicilio(db.Model):
+    __tablename__ = "domicilios"
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(255), nullable=True)
+    endereco = db.Column(db.String(255), nullable=True)
+    precocom = db.Column(db.Integer, nullable=True)
+    precoalu = db.Column(db.Integer, nullable=True)
+    dimens = db.Column(db.String(255), nullable=True)
+    qtdcomodos= db.Column(db.Integer, nullable=True)
+    data = db.Column(db.DateTime,  default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+
 
    
 

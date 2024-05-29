@@ -1,0 +1,97 @@
+{% extends "base_sistema.html" %} {% block subtitulo %} Usuario {% endblock%} {%
+block conteudo %}
+<section class="content">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+      <!-- general form elements -->
+      <div class="box box-primary" style="background-color: #282119">
+        <div class="box-header">
+          <h3 class="box-title" style="color: white">Excluir imóvel</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="row g-3">
+          <div class="box-body" style="color: white">
+            <div class="col-md-4">
+              <label class="form-label">Id</label>
+              <input class="form-control" type="text" value="1" disabled />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Nome</label>
+              <input
+                class="form-control"
+                type="nome"
+                name="nome"
+                value="nome"
+                disabled
+              />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Endereço</label>
+              <input
+                class="form-control"
+                type="text"
+                name="endereco"
+                value="endereco"
+                disabled
+              />
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Preço Compra</label>
+              <input class="form-control" type="text" value="5000" disabled />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Preço Aluguel</label>
+              <input
+                class="form-control"
+                type="text"
+                name="precoalu"
+                value="500"
+                disabled
+              />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Dimensões</label>
+              <input
+                class="form-control"
+                type="text"
+                name="dimens"
+                value="20x50x10"
+                disabled
+              />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Quantidade de cômodos</label>
+              <input
+                class="form-control"
+                type="text"
+                name="qtdcomodos"
+                value="4"
+                disabled
+              />
+            </div>
+            <div class="col-md-12">
+              <br />
+            </div>
+            <div class="col-md-12">
+              <a
+                href=""
+                class="btn btn-primary btn-lg active"
+                role="button"
+                aria-pressed="true"
+                >Excluir</a
+              >
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- /.box -->
+    </div>
+    <!--/.col (left) -->
+    <!-- right column -->
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.content -->
+{% endblock %}

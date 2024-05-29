@@ -1,0 +1,70 @@
+{% extends "base_sistema.html" %} {% block subtitulo %} Usuarios {% endblock%}
+{% block conteudo %}
+<section class="content">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+      <!-- general form elements -->
+      <div class="box box-primary" style="background-color: #282119; color: white;">
+        <div class="box-header">
+          <h3 class="box-title" style="color: white;">Cadastro de imóveis</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form
+          class="row g-3"
+          action="{{url_for('cad_imovel')}}"
+          method="POST"
+          name="dados_user"
+          onSubmit="return enviardados_user();"
+        >
+          <div class="box-body" style="background-color: #282119;">
+            <div class="col-md-10">
+              {% with messages = get_flashed_messages()%} {% if messages %} {%
+              for message in messages %}
+              <div class="alert alert-success">{{message}}</div>
+              {% endfor %} {% endif %} {% endwith %}
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Nome</label>
+              <input class="form-control" type="text" name="nome" id="nome" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Endereço</label>
+              <input class="form-control" type="text" name="endereco" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Preço Compra</label>
+              <input class="form-control" type="text" name="precocom" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Preço Aluguel</label>
+              <input class="form-control" type="text" name="precoalu" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Dimensões</label>
+              <input class="form-control" type="text" name="dimens" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Quantidade de cômodos</label>
+              <input class="form-control" type="text" name="qtdcomodos" />
+            </div>
+            <div class="col-md-12">
+              <br />
+            </div>
+            <div class="col-md-12">
+              <button class="btn btn-primary" type="submit">Cadastrar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- /.box -->
+    </div>
+    <!--/.col (left) -->
+    <!-- right column -->
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.content -->
+{% endblock %}

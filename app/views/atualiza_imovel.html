@@ -1,0 +1,93 @@
+{% extends "base_sistema.html" %} {% block subtitulo %} Usuarios {% endblock%}
+{% block conteudo %}
+<section class="content">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+      <!-- general form elements -->
+      <div class="box box-primary" style="background-color: #282119">
+        <div class="box-header">
+          <h3 class="box-title" style="color: white;">Atualização de imóveis</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form
+          class="row g-3"
+          action="{{url_for('atualiza_imovel', id=_domicilio.id)}}"
+          method="POST"
+          name="dados_user"
+        >
+          <div class="box-body" style="color: white;">
+            <div class="col-md-4">
+              <label class="form-label">Nome</label>
+              <input
+                class="form-control"
+                type="text"
+                name="nome"
+                id="nome"
+                value="{{_domicilio.nome}}"
+              />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Endereço</label>
+              <input
+                class="form-control"
+                type="text"
+                name="endereco"
+                value="{{_domicilio.endereco}}"
+              />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Preco Compra</label>
+              <input
+                class="form-control"
+                type="text"
+                name="precocom"
+                value="{{_domicilio.precocom}}"
+              />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Preco Aluguel</label>
+              <input
+                class="form-control"
+                type="text"
+                name="precoalu"
+                value="{{_domicilio.precoalu}}"
+              />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Dimensões</label>
+              <input
+                class="form-control"
+                type="text"
+                name="dimens"
+                value="{{_domicilio.dimens}}"
+              />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Quantidade de cômodos</label>
+              <input
+                class="form-control"
+                type="text"
+                name="qtdcomodos"
+                value="{{_domicilio.qtdcomodos}}"
+              />
+            </div>
+            <div class="col-md-12">
+              <br />
+            </div>
+            <div class="col-md-12">
+              <button class="btn btn-primary" type="submit">Alterar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- /.box -->
+    </div>
+    <!--/.col (left) -->
+    <!-- right column -->
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.content -->
+{% endblock %}

@@ -1,4 +1,4 @@
-from app.models import hotel, user
+from app.models import hotel, user, domicilio
 from app import db
 from app.forms import LoginForm
 from datetime import timedelta
@@ -21,6 +21,12 @@ def init_app(app):
     @app.route("/usuario")
     def usuario():        
         return render_template("usuario.html", users=db.session.execute(db.select(user).order_by(user.id)).scalars())
+    
+    @app.route("/imovel")
+    def imovel():        
+        return render_template("imovel.html", domicilios=db.session.execute(db.select(domicilio).order_by(domicilio.id)).scalars())
+    
+    
     
     @app.route("/cad_user", methods=["GET", "POST"])
     def cad_user(): 
@@ -48,7 +54,24 @@ def init_app(app):
             
             flash("Usuário criado com sucesso.")
             return redirect(url_for("cad_usuario"))
-        return render_template("cad_usuario.html")     
+        return render_template("cad_usuario.html")
+
+    @app.route("/cad_imovel", methods=["GET", "POST"])
+    def cad_imovel(): 
+        if request.method == "POST":     
+            _casa = domicilio()
+            _casa.nome = request.form["nome"]
+            _casa.endereco = request.form["endereco"]
+            _casa.precocom = request.form["precocom"]
+            _casa.precoalu = request.form["precoalu"]
+            _casa.dimens = request.form["dimens"]
+            _casa.qtdcomodos = request.form["qtdcomodos"]
+            db.session.add(_casa)
+            db.session.commit()
+            
+            flash("Imóvel criado com sucesso.")
+            return redirect(url_for("cad_imovel"))
+        return render_template("cad_imovel.html")     
     
     @app.route("/atualiza_user/<int:id>", methods=["GET", "POST"])
     def atualiza_user(id): 
@@ -82,6 +105,26 @@ def init_app(app):
             
         return render_template("atualiza_usuario.html", _user=_user)
     
+
+    @app.route("/atualiza_imovel/<int:id>", methods=["GET", "POST"])
+    def atualiza_imovel(id): 
+        _domicilio = domicilio.query.filter_by(id=id).first()
+        if request.method == "POST":
+            nomecasa = request.form["nome"]
+            endcasa = request.form["endereco"]
+            precocomcasa = request.form["precocom"]
+            precoalucasa = request.form["precoalu"]
+            dimenscasa = request.form["dimens"]
+            comodocasa = request.form["qtdcomodos"]
+            
+            flash("Imóvel atualizado com sucesso.") 
+            
+            _domicilio.query.filter_by(id=id).update({"nome": nomecasa, "endereco": endcasa, "precocom": precocomcasa, "precoalu": precoalucasa, "dimens": dimenscasa, "qtdcomodos": comodocasa})
+            db.session.commit()
+            return redirect(url_for("imovel"))
+            
+        return render_template("atualiza_imovel.html", _domicilio=_domicilio)
+    
     @app.route("/exclui_user/<int:id>")
     def exclui_user(id):  
         delete=hotel.query.filter_by(id=id).first()  
@@ -95,6 +138,13 @@ def init_app(app):
         db.session.delete(delete)
         db.session.commit()    
         return redirect(url_for("usuario"))
+    
+    @app.route("/exclui_imovel/<int:id>")
+    def exclui_imovel(id):  
+        delete=domicilio.query.filter_by(id=id).first()  
+        db.session.delete(delete)
+        db.session.commit()    
+        return redirect(url_for("imovel"))
     
     
     
